@@ -1,0 +1,24 @@
+config {
+    type: "incremental",
+    schema: "PRODUCTION",
+    name: "DIM_UN_NEGOCIO",
+    tags: ["PRODUCTION"],
+    uniqueKey: ["ID_UN_NEGOCIO"],
+    description: "Cadastro dos nomes das unidades BOT, EUD, QDB, BBX e FRJ.",
+    columns: {
+      ID_UN_NEGOCIO: "Código único da unidade de negócio",
+      COD_UN_NEGOCIO: "Código único da unidade de negócio - em string",
+      DESC_UN_NEGOCIO: "Descrição da unidade de negócio",
+      _airbyte_extracted_at: "Última ingestão realizada pelo airbyte",
+    }
+}
+
+SELECT 
+  ID_UN_NEGOCIO,
+  COD_UN_NEGOCIO,
+  DESC_UN_NEGOCIO,
+  _airbyte_extracted_at
+  
+FROM ${ref("caseboticario-456516", "STAGING", "STG_TB_UN_NEGOCIO")}
+
+GROUP BY ALL

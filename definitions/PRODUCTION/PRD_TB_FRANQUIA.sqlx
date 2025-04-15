@@ -6,13 +6,13 @@ config {
     uniqueKey: ["COD_FRANQUIA"],
     description: "Cadastro das franquias de acordo com a unidade de negócio vinculada.",
     columns: {
-    CIDADE: "Cidade em que a franquia está localizada",
-    ESTADO: "Estado em que a franquia está localizada",
-    LOGRADOURO: "Logradouro em que a franquia está localizada",
-    COD_FRANQUIA: "Código único da franquia",
-    NOME_FRANQUIA: "Nome da franquia",
-    COD_UN_NEGOCIO: "Código unidade de negócio",
-    _airbyte_extracted_at: "Última ingestão realizada pelo airbyte",
+      CIDADE: "Cidade em que a franquia está localizada",
+      ESTADO: "Estado em que a franquia está localizada",
+      LOGRADOURO: "Logradouro em que a franquia está localizada",
+      COD_FRANQUIA: "Código único da franquia",
+      NOME_FRANQUIA: "Nome da franquia",
+      COD_UN_NEGOCIO: "Código unidade de negócio",
+      _airbyte_extracted_at: "Última ingestão realizada pelo airbyte",
     }
 }
 

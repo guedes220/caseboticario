@@ -1,0 +1,34 @@
+config {
+    type: "incremental",
+    schema: "PRODUCTION",
+    name: "FTO_TB_VENDA",
+    tags: ["PRODUCTION"],
+    uniqueKey: ["COD_MATERIAL", "COD_FRANQUIA", "COD_CUPOM", "COD_PDV", "COD_CANAL_VENDA", "COD_UN_NEGOCIO"],
+    description: "A tabela de vendas possui registros de vendas realizadas pelas unidades do Boticário (BOT, EUD, QDB, BBX e FRJ) do período de 02/02/20 até 11/05/20. Os registros compreendem as vendas dos canais de Loja (LOJ) e Venda Direta (VD) este se aplica somente para as unidades BOT e EUD.",
+    columns: {
+      COD_MATERIAL: "Código único do material",
+      COD_PDV: "Código único do ponto de venda",
+      COD_CUPOM: "Código do cumpom de desconto utilizado",
+      QT_ITEM: "Quantidade de itens vendidos",
+      COD_FRANQUIA: "Código único da franquia",
+      COD_CANAL_VENDA: "Código do canal de vendas - em string",
+      COD_UN_NEGOCIO: "Código único da unidade de negócio - em string",
+      DT_VENDA: "Data da venda do material",
+      VLR_VENDA: "Valor total da venda em reais",
+      _airbyte_extracted_at: "Última ingestão realizada pelo airbyte",
+    }
+}
+
+SELECT
+  COD_MATERIAL,
+  COD_FRANQUIA,
+  COD_CUPOM,
+  COD_PDV,
+  COD_CANAL_VENDA,
+  COD_UN_NEGOCIO,
+  DT_VENDA,
+  QT_ITEM,
+  VLR_VENDA,
+  _airbyte_extracted_at
+
+FROM ${ref("caseboticario-456516", "STAGING", "STG_TB_VENDA")}
