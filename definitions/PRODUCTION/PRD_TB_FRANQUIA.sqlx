@@ -1,8 +1,8 @@
 config {
-    type: "table",
-    schema: "STAGING",
-    name: "STG_TB_FRANQUIA",
-    tags: ["STAGING"],
+    type: "incremental",
+    schema: "PRODUCTION",
+    name: "DIM_TB_FRANQUIA",
+    tags: ["PRODUCTION"],
     uniqueKey: ["COD_FRANQUIA"],
     description: "Cadastro das franquias de acordo com a unidade de negócio vinculada.",
     columns: {
@@ -20,11 +20,11 @@ SELECT
   CIDADE,
   ESTADO,
   LOGRADOURO,
-  CAST(COD_FRANQUIA AS INT64) AS COD_FRANQUIA,
+  COD_FRANQUIA,
   NOME_FRANQUIA,
   COD_UN_NEGOCIO,
   _airbyte_extracted_at
   
-FROM ${ref("caseboticario-456516", "RAW", "RAW_TB_FRANQUIA")}
+FROM ${ref("caseboticario-456516", "STAGING", "STG_TB_FRANQUIA")}
 
 GROUP BY ALL
