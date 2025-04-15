@@ -1,7 +1,7 @@
 config {
     type: "incremental",
     schema: "PRODUCTION",
-    name: "DIM_UN_NEGOCIO",
+    name: "DIM_TB_UN_NEGOCIO",
     tags: ["PRODUCTION"],
     uniqueKey: ["ID_UN_NEGOCIO"],
     description: "Cadastro dos nomes das unidades BOT, EUD, QDB, BBX e FRJ.",
