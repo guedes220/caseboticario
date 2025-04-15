@@ -1,0 +1,5 @@
+defaultProject: caseboticario-456516
+defaultLocation: southamerica-east1
+defaultDataset: STAGING
+defaultAssertionDataset: dataform_assertions
+dataformCoreVersion: 3.0.0
