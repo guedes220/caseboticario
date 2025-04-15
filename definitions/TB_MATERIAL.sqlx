@@ -1,0 +1,22 @@
+config {
+  type: "table",
+  description: "Cadastro de materiais (produtos) de acordo com a unidade de negócio vinculada.",
+  columns: {
+    COD_MATERIAL: "Código único do material",
+    DES_MATERIAL: "Descrição do material",
+    DES_CATEGORIA: "Categoria do material",
+    COD_UN_NEGOCIO: "Código unidade de negócio",
+    _airbyte_extracted_at: "Última ingestão realizada pelo airbyte",
+  }
+}
+
+SELECT 
+  CAST(COD_MATERIAL AS INT64) AS COD_MATERIAL,
+  DES_MATERIAL,
+  DES_CATEGORIA,
+  COD_UN_NEGOCIO,
+  _airbyte_extracted_at
+  
+FROM ${ref("caseboticario-456516", "RAW", "TB_MATERIAL")}
+
+GROUP BY ALL
