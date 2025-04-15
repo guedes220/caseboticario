@@ -1,0 +1,24 @@
+config {
+    type: "incremental",
+    schema: "PRODUCTION",
+    name: "FTO_TB_QTD_VENDA",
+    tags: ["PRODUCTION"],
+    uniqueKey: ["ID_MARCA", "ID_LINHA", "DATA_VENDA", "QTD_VENDA", "FILE_PATH"],
+    description: "Quantidade de vendas do grupo boticário",
+    columns: {
+      ID_MARCA: "Código único da marca",
+      ID_LINHA: "Código único da linha",
+      DATA_VENDA: "Data de venda",
+      QTD_VENDA: "Quantidade de itens vendidos",
+      FILE_PATH: "Tabela origem do dado",
+    }
+}
+
+SELECT
+  ID_MARCA,
+  ID_LINHA,
+  DATA_VENDA,
+  QTD_VENDA,
+  FILE_PATH
+
+FROM ${ref("caseboticario-456516", "STAGING", "STG_TB_QTD_VENDA")}
