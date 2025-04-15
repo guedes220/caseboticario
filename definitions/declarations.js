@@ -1,23 +1,23 @@
 declare({
     database: "caseboticario-456516",
     schema: "RAW",
-    name: "TB_FRANQUIA",
+    name: "RAW_TB_FRANQUIA",
 });
 
 declare({
     database: "caseboticario-456516",
     schema: "RAW",
-    name: "TB_MATERIAL",
+    name: "RAW_TB_MATERIAL",
 });
 
 declare({
     database: "caseboticario-456516",
     schema: "RAW",
-    name: "TB_UN_NEGOCIO",
+    name: "RAW_TB_UN_NEGOCIO",
 });
 
 declare({
     database: "caseboticario-456516",
     schema: "RAW",
-    name: "TB_VENDA",
+    name: "RAW_TB_VENDA",
 });

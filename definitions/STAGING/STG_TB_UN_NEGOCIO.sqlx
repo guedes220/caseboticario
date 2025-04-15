@@ -1,5 +1,8 @@
 config {
   type: "table",
+  schema: "STAGING",
+  name: "STG_TB_UN_NEGOCIO",
+  tags: ["STAGING"],
   description: "Cadastro dos nomes das unidades BOT, EUD, QDB, BBX e FRJ.",
   columns: {
     ID_UN_NEGOCIO: "Código único da unidade de negócio",
@@ -15,6 +18,6 @@ SELECT
   DESC_UN_NEGOCIO,
   _airbyte_extracted_at
   
-FROM ${ref("caseboticario-456516", "RAW", "TB_UN_NEGOCIO")}
+FROM ${ref("caseboticario-456516", "RAW", "RAW_TB_UN_NEGOCIO")}
 
 GROUP BY ALL

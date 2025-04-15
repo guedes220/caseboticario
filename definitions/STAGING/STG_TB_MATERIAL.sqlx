@@ -1,5 +1,8 @@
 config {
   type: "table",
+  schema: "STAGING",
+  name: "STG_TB_MATERIAL",
+  tags: ["STAGING"],
   description: "Cadastro de materiais (produtos) de acordo com a unidade de negócio vinculada.",
   columns: {
     COD_MATERIAL: "Código único do material",
@@ -17,6 +20,6 @@ SELECT
   COD_UN_NEGOCIO,
   _airbyte_extracted_at
   
-FROM ${ref("caseboticario-456516", "RAW", "TB_MATERIAL")}
+FROM ${ref("caseboticario-456516", "RAW", "RAW_TB_MATERIAL")}
 
 GROUP BY ALL
