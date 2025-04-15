@@ -1,7 +1,10 @@
 config {
-  type: "table",
-  description: "Cadastro das franquias de acordo com a unidade de negócio vinculada.",
-  columns: {
+    type: "table",
+    schema: "STAGING",
+    name: "STG_TB_FRANQUIA",
+    tags: ["STAGING"],
+    description: "Cadastro das franquias de acordo com a unidade de negócio vinculada.",
+    columns: {
     CIDADE: "Cidade em que a franquia está localizada",
     ESTADO: "Estado em que a franquia está localizada",
     LOGRADOURO: "Logradouro em que a franquia está localizada",
@@ -9,7 +12,7 @@ config {
     NOME_FRANQUIA: "Nome da franquia",
     COD_UN_NEGOCIO: "Código unidade de negócio",
     _airbyte_extracted_at: "Última ingestão realizada pelo airbyte",
-  }
+    }
 }
 
 SELECT 
@@ -21,6 +24,6 @@ SELECT
   COD_UN_NEGOCIO,
   _airbyte_extracted_at
   
-FROM ${ref("caseboticario-456516", "RAW", "TB_FRANQUIA")}
+FROM ${ref("caseboticario-456516", "RAW", "RAW_TB_FRANQUIA")}
 
 GROUP BY ALL

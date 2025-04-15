@@ -1,5 +1,8 @@
 config {
   type: "table",
+  schema: "STAGING",
+  name: "STG_TB_VENDA",
+  tags: ["STAGING"],
   description: "A tabela de vendas possui registros de vendas realizadas pelas unidades do Boticário (BOT, EUD, QDB, BBX e FRJ) do período de 02/02/20 até 11/05/20. Os registros compreendem as vendas dos canais de Loja (LOJ) e Venda Direta (VD) este se aplica somente para as unidades BOT e EUD.",
   columns: {
     COD_MATERIAL: "Código único do material",
@@ -27,4 +30,4 @@ SELECT
   CAST(REPLACE(VLR_VENDA, ',', '.') AS FLOAT64) AS VLR_VENDA,
   _airbyte_extracted_at
 
-FROM ${ref("caseboticario-456516", "RAW", "TB_VENDA")}
+FROM ${ref("caseboticario-456516", "RAW", "RAW_TB_VENDA")}
