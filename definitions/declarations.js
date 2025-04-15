@@ -9,3 +9,9 @@ declare({
     schema: "RAW",
     name: "TB_MATERIAL",
 });
+
+declare({
+    database: "caseboticario-456516",
+    schema: "RAW",
+    name: "TB_UN_NEGOCIO",
+});
