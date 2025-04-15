@@ -1,0 +1,18 @@
+config {
+    type: "incremental",
+    schema: "PRODUCTION",
+    name: "DIM_TB_MARCA",
+    tags: ["PRODUCTION"],
+    uniqueKey: ["ID_MARCA"],
+    description: "Indica as marcas do grupo boticário.",
+    columns: {
+      ID_MARCA: "Código único da marca",
+      DES_MARCA: "Descrição da marca"
+    }
+}
+
+SELECT
+  ID_MARCA,
+  DES_MARCA
+
+FROM ${ref("caseboticario-456516", "STAGING", "STG_TB_MARCA")}

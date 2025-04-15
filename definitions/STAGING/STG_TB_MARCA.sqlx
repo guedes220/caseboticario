@@ -1,0 +1,17 @@
+config {
+  type: "table",
+  schema: "STAGING",
+  name: "STG_TB_MARCA",
+  tags: ["STAGING"],
+  description: "Indica as marcas do grupo boticário",
+  columns: {
+    ID_MARCA: "Código único da marca",
+    DES_MARCA: "Descrição da marca"
+  }
+}
+
+SELECT
+  ID_MARCA,
+  MARCA AS DES_MARCA
+
+FROM ${ref("caseboticario-456516", "RAW", "RAW_TB_MARCA")}

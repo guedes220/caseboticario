@@ -1,0 +1,17 @@
+config {
+  type: "table",
+  schema: "STAGING",
+  name: "STG_TB_LINHA",
+  tags: ["STAGING"],
+  description: "Indica as linhas do grupo boticário",
+  columns: {
+    ID_LINHA: "Código único da linha",
+    DES_LINHA: "Descrição da linha"
+  }
+}
+
+SELECT
+  ID_LINHA,
+  LINHA AS DES_LINHA
+
+FROM ${ref("caseboticario-456516", "RAW", "RAW_TB_LINHA")}

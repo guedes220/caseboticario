@@ -1,0 +1,23 @@
+config {
+  type: "table",
+  schema: "STAGING",
+  name: "STG_TB_QTD_VENDA",
+  tags: ["STAGING"],
+  description: "Quantidade de vendas do grupo boticário",
+  columns: {
+    ID_MARCA: "Código único da marca",
+    ID_LINHA: "Código único da linha",
+    DATA_VENDA: "Data de venda",
+    QTD_VENDA: "Quantidade de itens vendidos",
+    FILE_PATH: "Tabela origem do dado",
+  }
+}
+
+SELECT
+  ID_MARCA,
+  ID_LINHA,
+  DATA_VENDA,
+  QTD_VENDA,
+  FILE_PATH
+
+FROM ${ref("caseboticario-456516", "RAW", "RAW_TB_QTD_VENDA")}
