@@ -1,0 +1,41 @@
+config {
+    type: "table",
+    schema: "ANALYTICS",
+    name: "CASE1",
+    tags: ["ANALYTICS"],
+    uniqueKey: ["COD_MATERIAL", "COD_FRANQUIA", "COD_CUPOM", "COD_PDV", "COD_CANAL_VENDA", "COD_UN_NEGOCIO"],
+    description: "A tabela de vendas possui registros de vendas realizadas pelas unidades do Boticário (BOT, EUD, QDB, BBX e FRJ) do período de 02/02/20 até 11/05/20. Os registros compreendem as vendas dos canais de Loja (LOJ) e Venda Direta (VD) este se aplica somente para as unidades BOT e EUD.",
+    columns: {
+      COD_MATERIAL: "Código único do material",
+      COD_PDV: "Código único do ponto de venda",
+      COD_CUPOM: "Código do cumpom de desconto utilizado",
+      QT_ITEM: "Quantidade de itens vendidos",
+      COD_FRANQUIA: "Código único da franquia",
+      COD_CANAL_VENDA: "Código do canal de vendas - em string",
+      COD_UN_NEGOCIO: "Código único da unidade de negócio - em string",
+      DT_VENDA: "Data da venda do material",
+      VLR_VENDA: "Valor total da venda em reais",
+      CIDADE: "Cidade em que a franquia está localizada",
+      ESTADO: "Estado em que a franquia está localizada",
+      NOME_FRANQUIA: "Nome da franquia",
+      DES_MATERIAL: "Descrição do material",
+      DES_CATEGORIA: "Categoria do material",
+      COD_UN_NEGOCIO_MATERIAL: "Código unidade de negócio vindo da tabela material",
+      DESC_UN_NEGOCIO: "Descrição da unidade de negócio",
+    }
+}
+
+SELECT
+  VEND.*,
+  FRAN.ESTADO,
+  FRAN.CIDADE,
+  FRAN.NOME_FRANQUIA,
+  MATE.DES_CATEGORIA,
+  MATE.DES_MATERIAL,
+  MATE.COD_UN_NEGOCIO AS COD_UN_NEGOCIO_MATERIAL,
+  NEGO.DESC_UN_NEGOCIO
+
+FROM ${ref("caseboticario-456516", "PRODUCTION", "FTO_TB_VENDA")} AS VEND
+  LEFT JOIN ${ref("caseboticario-456516", "PRODUCTION", "DIM_TB_FRANQUIA")} AS FRAN USING(COD_FRANQUIA)
+  LEFT JOIN ${ref("caseboticario-456516", "PRODUCTION", "DIM_TB_MATERIAL")} AS MATE USING(COD_MATERIAL)
+  LEFT JOIN ${ref("caseboticario-456516", "PRODUCTION", "DIM_TB_COD_UN_NEGOCIO")} AS NEGO ON NEGO.COD_UN_NEGOCIO = VEND.COD_UN_NEGOCIO
