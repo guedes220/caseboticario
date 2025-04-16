@@ -1,0 +1,26 @@
+config {
+    type: "table",
+    schema: "ANALYTICS",
+    name: "TABELA1_CASE2",
+    tags: ["ANALYTICS"],
+    uniqueKey: ["ANO_VENDA", "MES_VENDA"],
+    description: "Consolidado de vendas por ano e mês",
+    columns: {
+      ANO_VENDA: "Ano da venda",
+      MES_VENDA: "Mes da venda",
+      QTD_VENDA: "Quantidade de itens vendidos",
+      ULT_ATUALIZACAO: "Ultima vez que esta tabela foi atualizada."
+    }
+}
+
+SELECT
+  EXTRACT(YEAR FROM DATA_VENDA) AS ANO_VENDA,
+  EXTRACT(MONTH FROM DATA_VENDA) AS MES_VENDA,
+  SUM(QTD_VENDA) AS QTD_VENDA,
+  CURRENT_DATETIME() AS ULT_ATUALIZACAO
+
+FROM ${ref("caseboticario-456516", "PRODUCTION", "FTO_TB_QTD_VENDA")}
+
+GROUP BY ALL
+
+ORDER BY ANO_VENDA, MES_VENDA
