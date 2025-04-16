@@ -14,6 +14,8 @@ config {
     }
 }
 
+${when(incremental(), `DELETE FROM ${self()} WHERE DATA_VENDA >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY);`)}
+
 SELECT
   ID_MARCA,
   ID_LINHA,
@@ -22,3 +24,5 @@ SELECT
   FILE_PATH
 
 FROM ${ref("caseboticario-456516", "STAGING", "STG_TB_QTD_VENDA")}
+
+${when(incremental(), `WHERE DATA_VENDA >= (SELECT MAX(DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)) FROM ${self()})`)}

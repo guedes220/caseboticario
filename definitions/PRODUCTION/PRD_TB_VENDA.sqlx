@@ -19,6 +19,8 @@ config {
     }
 }
 
+${when(incremental(), `DELETE FROM ${self()} WHERE DT_VENDA >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY);`)}
+
 SELECT
   COD_MATERIAL,
   COD_FRANQUIA,
@@ -32,3 +34,5 @@ SELECT
   _airbyte_extracted_at
 
 FROM ${ref("caseboticario-456516", "STAGING", "STG_TB_VENDA")}
+
+${when(incremental(), `WHERE DT_VENDA >= (SELECT MAX(DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)) FROM ${self()})`)}
